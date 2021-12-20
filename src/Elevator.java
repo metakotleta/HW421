@@ -20,7 +20,7 @@ public class Elevator {
 
     public double goTo (int floor) {
         double timeToReturn;
-        if (floorQueue.isEmpty() || floor != floorQueue.peek()) {
+        if (floorQueue.isEmpty() || floor != floorQueue.peekLast()) {
             floorQueue.offer(floor);
             timeToReturn = countTime(prevFloor, floorQueue.peekLast());
             prevFloor = floorQueue.peekLast();
