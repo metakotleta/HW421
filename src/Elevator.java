@@ -8,10 +8,11 @@ public class Elevator {
     private final double TIME_TO_MOVE = 2.5;
     private final int TIME_TO_STOP = 10;
 
-    private double totalTime = 0;
-    private int prevFloor = 1;
     private Deque<Integer> floorQueue = new ArrayDeque<>();
     private StringBuilder elevatorPath = new StringBuilder();
+    double timeToReturn;
+    private double totalTime = 0;
+    private int prevFloor = 1;
 
     private double countTime (int prevFloor, int floor) {
         totalTime += Math.abs(floor - prevFloor) * TIME_TO_MOVE + TIME_TO_STOP;
@@ -19,7 +20,6 @@ public class Elevator {
     }
 
     public double goTo (int floor) {
-        double timeToReturn;
         if (floorQueue.isEmpty() || floor != floorQueue.peekLast()) {
             floorQueue.offer(floor);
             timeToReturn = countTime(prevFloor, floorQueue.peekLast());
@@ -27,7 +27,7 @@ public class Elevator {
             return timeToReturn;
         } else {
             System.out.println("Мы на этом этаже");
-            return 0;
+            return timeToReturn;
         }
     }
 
